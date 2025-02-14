@@ -1,17 +1,35 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model Whiskey {
-  id           Int     @id @default(autoincrement())
-  title        String
-  description  String
+generator client {
+  provider = "prisma-client-js"
+}
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+model Message {
+  id         Int      @id @default(autoincrement())
+  text       String
+  createdAt  DateTime @default(now())
+
+  senderId   Int
+  senderType String
+
+  receiverId   Int
+  receiverType String
+
+  @@index([senderId, senderType])
+  @@index([receiverId, receiverType])
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String    @unique
+  password String
+}
+
+model Group {
+  id   Int    @id @default(autoincrement())
+  name String
 }
