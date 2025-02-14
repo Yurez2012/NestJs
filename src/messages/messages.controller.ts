@@ -1,18 +1,45 @@
-import {Controller, Get, UseGuards, Request, Param, ParseIntPipe, ValidationPipe} from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    UseGuards,
+    Request,
+    Param,
+    ValidationPipe,
+    Post,
+    Body
+} from '@nestjs/common';
 import {JwtAuthGuard} from "../auth/guard/jwt-guard.guard";
 import {MessagesService} from "./messages.service";
-import {ShowMessagesDto} from "./dto/show-messages.dto";
+import {SenderDto} from "./dto/sender.dto";
+import {ReceiverDto} from "./dto/receiver.dto";
 
-@Controller('messages')
+@Controller('message')
 export class MessagesController {
-    constructor(private messageService: MessagesService) {}
+    constructor(private messageService: MessagesService) {
+    }
 
-    @Get('/:user_id/:user_type')
+    @Get('/:sender_id/:sender_type')
     @UseGuards(JwtAuthGuard)
     getMessages(
-        @Request() req,
-        @Param(new ValidationPipe()) dto: ShowMessagesDto,
+        @Param(new ValidationPipe({ transform: true})) dto: SenderDto,
     ) {
         return this.messageService.getMessagesByUser(dto);
+    }
+
+    @Post('/store')
+    @UseGuards(JwtAuthGuard)
+    storeMessage(
+        @Request() req,
+        @Body(new ValidationPipe({ transform: true})) receiver: ReceiverDto,
+    ) {
+        const messageData = {
+            sender_id: req.user.userId,
+            sender_type: req.user.userType,
+            receiver_id: receiver.receiver_id,
+            receiver_type: receiver.receiver_type,
+            text: receiver.text,
+        };
+
+        return this.messageService.storeMessage(messageData);
     }
 }
