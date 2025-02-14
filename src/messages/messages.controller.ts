@@ -1,11 +1,18 @@
-import {Controller, Get, UseGuards, Request} from '@nestjs/common';
+import {Controller, Get, UseGuards, Request, Param, ParseIntPipe, ValidationPipe} from '@nestjs/common';
 import {JwtAuthGuard} from "../auth/guard/jwt-guard.guard";
+import {MessagesService} from "./messages.service";
+import {ShowMessagesDto} from "./dto/show-messages.dto";
 
 @Controller('messages')
 export class MessagesController {
-    @Get()
+    constructor(private messageService: MessagesService) {}
+
+    @Get('/:user_id/:user_type')
     @UseGuards(JwtAuthGuard)
-    getMessages(@Request() req) {
-        console.log(req.user);
+    getMessages(
+        @Request() req,
+        @Param(new ValidationPipe()) dto: ShowMessagesDto,
+    ) {
+        return this.messageService.getMessagesByUser(dto);
     }
 }
