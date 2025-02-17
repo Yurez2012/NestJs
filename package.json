@@ -23,10 +23,10 @@
     "prepare": "husky"
   },
   "pre-commit": [
+    "npx validate-branch-name",
     "lint",
     "test",
-    "format",
-    "npx validate-branch-name"
+    "format"
   ],
   "dependencies": {
     "@nestjs/common": "^11.0.1",
