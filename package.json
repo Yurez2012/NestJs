@@ -19,9 +19,10 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "postinstall": "husky install",
-    "pre-commit": "yarn workspaces foreach run pre-commit format",
+    "pre-commit": "yarn workspaces foreach run pre-commit yarn format",
     "prepare": "husky"
   },
+  "pre-commit": ["lint", "test"],
   "dependencies": {
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.0",
