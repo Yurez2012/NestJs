@@ -1,5 +1,3 @@
-npx validate-branch-name
-
-npm test
-
 yarn format
+yarn lint
+yarn test
