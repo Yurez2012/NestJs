@@ -6,16 +6,3 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
-
-model messages {
-  id            Int      @id @default(autoincrement())
-  text          String   @db.Text
-  sender_id     Int
-  sender_type   String
-  receiver_id   Int
-  receiver_type String
-  create_at     DateTime @default(now())
-
-  @@index([sender_id, sender_type])
-  @@index([receiver_id, receiver_type])
-}
