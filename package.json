@@ -92,6 +92,6 @@
     "testEnvironment": "node"
   },
   "lint-staged": {
-    "**/*.{js,ts,tsx,jsx,json,md,html,css,scss}": "prettier --write"
+    "**/*": "prettier --write"
   }
 }
