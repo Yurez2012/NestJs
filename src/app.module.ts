@@ -12,7 +12,6 @@ import {ConfigModule} from "@nestjs/config";
 export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
                                                 consumer
-                                                    .apply()
-                                                    .forRoutes('');
+                                                    .apply().forRoutes('');
                             }
 }
