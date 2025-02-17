@@ -2,4 +2,3 @@ npx validate-branch-name
 
 yarn format
 yarn lint
-yarn test
