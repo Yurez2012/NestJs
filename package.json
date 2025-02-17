@@ -25,7 +25,8 @@
   "pre-commit": [
     "lint",
     "test",
-    "format"
+    "format",
+    "npx validate-branch-name"
   ],
   "dependencies": {
     "@nestjs/common": "^11.0.1",
