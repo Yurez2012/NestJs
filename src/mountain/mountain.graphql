@@ -1,0 +1,24 @@
+type Mountain {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateMountainInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateMountainInput {
+  id: Int!
+}
+
+type Query {
+  mountain: [Mountain]!
+  mountain(id: Int!): Mountain
+}
+
+type Mutation {
+  createMountain(createMountainInput: CreateMountainInput!): Mountain!
+  updateMountain(updateMountainInput: UpdateMountainInput!): Mountain!
+  removeMountain(id: Int!): Mountain
+}
