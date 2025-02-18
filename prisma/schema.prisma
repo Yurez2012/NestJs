@@ -7,7 +7,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        String         @id @default(uuid())
+  email     String         @unique
+  password  String
+  name      String?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  mountains UserMountain[]
+  regions   UserRegion[]
+}
+
 model Mountain {
-  id   Int    @id @default(autoincrement())
-  name String
+  id        String         @id @default(uuid())
+  name      String
+  mountains UserMountain[]
+}
+
+model UserMountain {
+  userId     String
+  mountainId String
+  mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, mountainId])
+  @@index([mountainId], map: "UserMountain_mountainId_fkey")
+}
+
+model Region {
+  id      String       @id @default(uuid())
+  name    String
+  regions UserRegion[]
+}
+
+model UserRegion {
+  userId   String
+  regionId String
+  region   Region @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, regionId])
+  @@index([regionId], map: "UserRegion_regionId_fkey")
 }

@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { MountainModule } from './mountain/mountain.module';
 import { PrismaModule } from '../prisma.module.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { PrismaModule } from '../prisma.module.service';
       autoSchemaFile: true,
     }),
     PrismaModule,
+    AuthModule,
     MountainModule,
   ],
   providers: [],

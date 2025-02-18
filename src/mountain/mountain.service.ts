@@ -16,14 +16,21 @@ export class MountainService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} mountain`;
+    return this.prisma.mountain.findFirst({
+      where: { id: id },
+    });
   }
 
-  update(id: number, updateMountainInput: UpdateMountainInput) {
-    return this.prisma.mountain.create({ data: updateMountainInput });
+  update(id: number, dto: UpdateMountainInput) {
+    this.prisma.mountain.update({
+      where: { id: id },
+      data: dto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} mountain`;
+    this.prisma.mountain.delete({
+      where: { id: id },
+    });
   }
 }
