@@ -26,7 +26,7 @@ export class AuthService {
     return this.generateToken(user);
   }
 
-  async login(loginUserDto: LoginAuthInput) {
+  async logIn(loginUserDto: LoginAuthInput) {
     const user = await this.prisma.user.findFirst({
       where: { email: loginUserDto.email },
     });

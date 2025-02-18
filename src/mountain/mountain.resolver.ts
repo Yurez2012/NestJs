@@ -3,30 +3,33 @@ import { MountainService } from './mountain.service';
 import { CreateMountainInput } from './dto/create-mountain.input';
 import { Mountain } from './entities/mountain.entity';
 import { UpdateMountainInput } from './dto/update-mountain.input';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from '../auth/guard/gql-auth.guard';
 
 @Resolver('Mountain')
 export class MountainResolver {
   constructor(private readonly mountainService: MountainService) {}
 
   @Mutation(() => Mountain)
-  create(
+  createMountain(
     @Args('createMountainInput') createMountainInput: CreateMountainInput,
   ) {
     return this.mountainService.create(createMountainInput);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Query(() => [Mountain])
-  findAll() {
+  findAllMountain() {
     return this.mountainService.findAll();
   }
 
   @Query(() => Mountain)
-  findOne(@Args('id') id: string) {
+  findOneMountain(@Args('id') id: string) {
     return this.mountainService.findOne(id);
   }
 
   @Mutation(() => Mountain)
-  update(
+  updateMountain(
     @Args('updateMountainInput') updateMountainInput: UpdateMountainInput,
   ) {
     return this.mountainService.update(
@@ -36,7 +39,7 @@ export class MountainResolver {
   }
 
   @Mutation(() => Mountain)
-  remove(@Args('id') id: string) {
+  removeMountain(@Args('id') id: string) {
     return this.mountainService.remove(id);
   }
 }
