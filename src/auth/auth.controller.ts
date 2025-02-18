@@ -16,6 +16,6 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('sign-in')
   signIn(@Body() dto: LoginAuthInput) {
-    return this.authService.signIn(dto);
+    return this.authService.findOneByEmail(dto.email);
   }
 }
