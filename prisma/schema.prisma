@@ -19,8 +19,11 @@ model User {
 }
 
 model Mountain {
-  id        String         @id @default(uuid())
-  name      String
+  id                    String         @id @default(uuid())
+  name                  String
+  height                Int
+  geo_location          String
+  admin_location        String
   mountains UserMountain[]
 }
 

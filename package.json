@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "postinstall": "husky install",
     "pre-commit": "yarn workspaces foreach run pre-commit",
-    "prepare": "husky"
+    "prepare": "husky",
+    "seed": "ts-node prisma/seed.ts"
   },
   "pre-commit": [
     "npx validate-branch-name",

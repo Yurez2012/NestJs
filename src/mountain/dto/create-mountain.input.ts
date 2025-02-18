@@ -4,4 +4,13 @@ import { Field, InputType } from '@nestjs/graphql';
 export class CreateMountainInput {
   @Field()
   name: string;
+
+  @Field()
+  height: number;
+
+  @Field()
+  geo_location: string;
+
+  @Field()
+  admin_location: string;
 }

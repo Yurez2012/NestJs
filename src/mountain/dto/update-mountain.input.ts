@@ -9,4 +9,13 @@ export class UpdateMountainInput extends PartialType(CreateMountainInput) {
 
   @Field()
   name: string;
+
+  @Field()
+  height: number;
+
+  @Field()
+  geo_location: string;
+
+  @Field()
+  admin_location: string;
 }
