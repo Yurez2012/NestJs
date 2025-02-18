@@ -15,20 +15,20 @@ export class MountainService {
     return this.prisma.mountain.findMany();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.mountain.findFirst({
       where: { id: id },
     });
   }
 
-  update(id: number, dto: UpdateMountainInput) {
+  update(id: string, dto: UpdateMountainInput) {
     this.prisma.mountain.update({
       where: { id: id },
       data: dto,
     });
   }
 
-  remove(id: number) {
+  remove(id: string) {
     this.prisma.mountain.delete({
       where: { id: id },
     });

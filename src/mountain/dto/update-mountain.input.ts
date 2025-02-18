@@ -5,7 +5,7 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class UpdateMountainInput extends PartialType(CreateMountainInput) {
   @Field()
-  id: number;
+  id: string;
 
   @Field()
   name: string;

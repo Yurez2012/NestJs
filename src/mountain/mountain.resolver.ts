@@ -21,7 +21,7 @@ export class MountainResolver {
   }
 
   @Query(() => Mountain)
-  findOne(@Args('id') id: number) {
+  findOne(@Args('id') id: string) {
     return this.mountainService.findOne(id);
   }
 
@@ -36,7 +36,7 @@ export class MountainResolver {
   }
 
   @Mutation(() => Mountain)
-  remove(@Args('id') id: number) {
+  remove(@Args('id') id: string) {
     return this.mountainService.remove(id);
   }
 }
