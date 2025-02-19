@@ -23,11 +23,13 @@ export class MountainResolver {
     return this.mountainService.findAll();
   }
 
+  @UseGuards(GqlAuthGuard)
   @Query(() => Mountain)
   findOneMountain(@Args('id') id: string) {
     return this.mountainService.findOne(id);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => Mountain)
   updateMountain(
     @Args('updateMountainInput') updateMountainInput: UpdateMountainInput,
@@ -38,6 +40,7 @@ export class MountainResolver {
     );
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => Mountain)
   removeMountain(@Args('id') id: string) {
     return this.mountainService.remove(id);
