@@ -3,8 +3,8 @@ import { RegionService } from './region.service';
 import { CreateRegionInput } from './dto/create-region.input';
 import { UpdateRegionInput } from './dto/update-region.input';
 import { Region } from './entities/region.entity';
-import {UseGuards} from "@nestjs/common";
-import {GqlAuthGuard} from "../auth/guard/gql-auth.guard";
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from '../auth/guard/gql-auth.guard';
 
 @Resolver('Region')
 export class RegionResolver {
@@ -19,7 +19,7 @@ export class RegionResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query(() => Region)
+  @Query(() => [Region])
   findAllRegion() {
     return this.regionService.findAll();
   }
