@@ -5,6 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { MountainModule } from './mountain/mountain.module';
 import { PrismaModule } from '../prisma.module.service';
 import { AuthModule } from './auth/auth.module';
+import { RegionModule } from './region/region.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
     PrismaModule,
     AuthModule,
     MountainModule,
+    RegionModule,
   ],
   providers: [],
 })
